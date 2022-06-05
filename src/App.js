@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useRecoilState } from "recoil";
+import Router from "./router/index";
+import { theme } from "./store";
 
-function App() {
+function App(props) {
+  const [currentTheme, setCurrentTheme] = useRecoilState(theme);
+  const themeClass = currentTheme == true ? "bg-dark text-white" : "bg-white text-dark";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${themeClass} vh-100`}>
+      <Router />
     </div>
   );
 }
